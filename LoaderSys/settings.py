@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-hbpb2bg$7w!@x2xpn!r4gm^3s%0z9g32=9qo61mdq3)-3)l4i*
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS =  ['https://loading-bay-production.up.railway.app']
 
 # Application definition
 
