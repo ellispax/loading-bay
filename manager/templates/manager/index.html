@@ -1,0 +1,19 @@
+{% extends "dashboard/base.html" %}{%block content%}
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">{{ head }}</h4>
+  </div>
+  <div class="card-body">
+    <a href="{%url 'diesel-list'%}" class="btn btn-primary">Diesel Purchase</a>
+    <a href="{%url 'expenses-list'%}" class="btn btn-primary">Other Expenses</a>
+    <a href="{%url 'log-list'%}" class="btn btn-primary">Work Log</a>
+    <a href="{%url 'movelog-list'%}" class="btn btn-primary">Move Log </a>
+    <a href="#" class="btn btn-primary">Service/Maintenance</a>
+    {% if request.user.is_superuser %}
+    <a href="#" class="btn btn-primary">Users</a>
+    {% else %}
+    <a href="#" class="btn btn-primary disabled">Users</a>
+    {% endif %}
+  </div>
+</div>
+{%endblock content%}

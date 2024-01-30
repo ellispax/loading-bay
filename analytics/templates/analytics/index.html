@@ -1,0 +1,18 @@
+{% extends "dashboard/base.html" %}{%block content%}
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">{{ head }}</h4>
+  </div>
+  <div class="card-body">
+    <a href="#" class="btn btn-primary">Income</a>
+    <a href="{%url 'diesel-graph'%}" class="btn btn-primary">Diesel</a>
+    <a href="{%url 'working-hr-charts'%}" class="btn btn-primary">Work Hours</a>
+    <a href="#" class="btn btn-primary">Other Expenses</a>
+    {% if request.user.is_superuser %}
+    <a href="#" class="btn btn-primary">Users</a>
+    {% else %}
+    <a href="#" class="btn btn-primary disabled">Users</a>
+    {% endif %}
+  </div>
+</div>
+{%endblock content%}

@@ -1,0 +1,87 @@
+{% extends "dashboard/base.html" %} {% load static %} {% block content %}
+
+<head>
+  <style media="screen">
+    .alert {
+      margin-left: 25%;
+      margin-right: 25%;
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+    }
+
+    .w3-panel h3 {
+      padding-top: 10px;
+      padding-left: 0px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      font-size: large;
+    }
+    .w3-panel {
+      align-items: center;
+      text-align: center;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+  </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+  />
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const timeString =
+        hours.toString().padStart(2, "0") +
+        ":" +
+        minutes.toString().padStart(2, "0") +
+        ":" +
+        seconds.toString().padStart(2, "0");
+      document.getElementById("clock").textContent = timeString;
+    }
+
+    setInterval(updateClock, 1000);
+  </script>
+</head>
+<br />
+
+<div class="w3-panel w3-grey">
+  <h3>Weather Outlook {{date}}</h3>
+  <h3 id="clock"></h3>
+</div>
+<br />
+
+{% endblock content %}
+<script>
+  $(function () {
+    var notifications = $("#notifications");
+    notifications.infiniteScroll({
+      url: "/notifications/",
+      append: "li",
+      loading: function () {
+        $(this).append(
+          '<li class="loading"><img src="/static/images/loading.gif" alt="Loading"></li>'
+        );
+      },
+      direction: "left",
+    });
+  });
+</script>
