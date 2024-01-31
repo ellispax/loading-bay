@@ -1,1 +1,2 @@
 web: gunicorn LoaderSys.wsgi 
+release: python manage.py migrate
