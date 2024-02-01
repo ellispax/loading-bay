@@ -1,1 +1,1 @@
-web: gunicorn loadersys.wsgi
+web: gunicorn LoaderSys.wsgi
