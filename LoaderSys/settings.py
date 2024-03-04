@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hbpb2bg$7w!@x2xpn!r4gm^3s%0z9g32=9qo61mdq3)-3)l4i*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS =  ['https://loading-bay-production.up.railway.app']
@@ -91,18 +91,18 @@ WSGI_APPLICATION = 'LoaderSys.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': 'GdGbbbcCg34hhe11B-5ChE6fbe-e24e3',
-        'HOST': 'monorail.proxy.rlwy.net',   
-        'PORT': '27808',
-}   
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql', 
+#         'NAME': 'railway',
+#         'USER': 'root',
+#         'PASSWORD': 'GdGbbbcCg34hhe11B-5ChE6fbe-e24e3',
+#         'HOST': 'monorail.proxy.rlwy.net',   
+#         'PORT': '27808',
+# }   
 }
 
 
@@ -136,8 +136,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -155,5 +154,8 @@ LOGIN_URL = 'login'
 CRISPY_TEMPLATE_PACK =  'bootstrap5'
 
 STATIC_URL = 'staticfiles/'
-
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'

@@ -25,7 +25,7 @@ def home(request):
 
 @login_required
 def Move_log_list(request):
-    Move_log_records = MoveLog.objects.all()
+    Move_log_records = MoveLog.objects.all().order_by('-date')
     gen_settings = Settings.objects.filter(id=1).first()
     if gen_settings:
         request.session['main_machine'] = gen_settings.main_machine
@@ -63,7 +63,7 @@ def add_movelog(request):
 
 @login_required
 def log_list(request):
-    log_records = WorkLog.objects.all()
+    log_records = WorkLog.objects.all().order_by('-date')
     gen_settings = Settings.objects.filter(id=1).first()
     if gen_settings:
         request.session['main_machine'] = gen_settings.main_machine
