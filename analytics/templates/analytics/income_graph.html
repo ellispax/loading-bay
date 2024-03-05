@@ -1,0 +1,66 @@
+{%extends "dashboard/base.html"%} {%block content%}
+<head>
+  <style type="text/css">
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-header .btn {
+      margin-left: auto;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<div class="card-header">
+  <h2>Income Graph</h2>
+  <a href="{% url 'analytics-home'%}" class="btn btn-primary">Go Back</a>
+</div>
+
+<!-- Canvas element where the chart will be rendered -->
+<div style="width: 75%">
+  <canvas id="incomeChart"></canvas>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var ctx = document.getElementById('incomeChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line', // or 'bar', 'pie', etc.
+
+      // The data for our dataset
+      data: {
+        labels: [
+          {% for data in monthly_data %}
+            "{{ data.month|date:'F Y' }}",
+          {% endfor %}
+        ],
+        datasets: [{
+          label: 'Monthly Income',
+          backgroundColor: '#99CCFF',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [
+            {% for data in monthly_data %}
+              {{ data.total_income|default_if_none:"0" }},
+            {% endfor %}
+          ],
+        }]
+      },
+
+      // Configuration options go here
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  });
+</script>
+
+{%endblock content%}

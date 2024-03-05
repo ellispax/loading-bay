@@ -28,7 +28,8 @@ class DieselPurchaseForm(forms.ModelForm):
         model       = DieselPurchase
         fields      = ['machine', 'receiptNumber', 'date', 'supplier', 'unit_price', 'total_cost','litres']
         widgets     = {
-            'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
+            'date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date', 'placeholder': 'mm/dd/yyyy'}),
+            # 'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
             'litres':forms.TextInput(attrs={'readonly':'readonly'})
         }
 
@@ -37,7 +38,8 @@ class WorkLogForm(forms.ModelForm):
         model       = WorkLog
         fields      = ['machine', 'customerName', 'phoneNumber', 'date', 'openingHr', 'closingHr', 'start_time', 'end_time', 'start_diesel', 'end_diesel', 'Fuel', 'amnt_earned', 'comment', 'paid']
         widgets     = {
-            'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
+            'date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date', 'placeholder': 'mm/dd/yyyy'}),
+            # 'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
             'phoneNumber': forms.TextInput(attrs={'placeholder':'+2637xxxxxxxx'})
         }
 
@@ -47,7 +49,8 @@ class MoveLogForm(forms.ModelForm):
         model       = MoveLog
         fields      = ['machine', 'date', 'openingHr', 'closingHr', 'depart_from', 'destination','comment']
         widgets     = {
-            'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
+            'date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date', 'placeholder': 'mm/dd/yyyy'}),
+            # 'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
         }
 
 class OtherExpensesForm(forms.ModelForm):
@@ -55,5 +58,6 @@ class OtherExpensesForm(forms.ModelForm):
         model       = OtherExpenses
         fields      = ['machine', 'receiptNumber', 'date', 'service', 'serviceProvider', 'total_cost']
         widgets     = {
-            'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
+            'date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type': 'date', 'placeholder': 'mm/dd/yyyy'}),
+            # 'date': forms.DateInput(attrs={'placeholder': 'mm/dd/yy'}),
         }

@@ -41,6 +41,17 @@ def diesel_purchase_graph(request):
 
     return render(request, 'analytics/diesel_purchase_graph.html', context)
 
+@login_required
+def income_graph(request):
+    monthly_data = WorkLog.objects.annotate(month=TruncMonth('date')).values('month').annotate(total_income=Sum('amnt_earned')).order_by('month')
+
+    print(monthly_data)
+    context = {
+        'monthly_data': monthly_data,
+    }
+
+    return render(request, 'analytics/income_graph.html', context)  
+
 # @login_required
 # def work_hours(request):
 #     combined_data = (
